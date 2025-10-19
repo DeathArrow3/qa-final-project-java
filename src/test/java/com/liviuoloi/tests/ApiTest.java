@@ -32,7 +32,7 @@ public class ApiTest {
         }
     }
 
-    @Test(description = "Verifică preluarea corectă a unei postări după ID")
+    @Test(description = "Verifică preluarea corectă a unei postări după titlu")
     public void test_preluare_postare_dupa_titlu() {
         // ARRANGE
         String urlComplet = this.baseUrl + "/todos/1";
