@@ -1,0 +1,50 @@
+CLASA ApiTests 
+ 
+    // Variabilă definită la nivel de clasă pentru a stoca URL-ul de bază 
+al serviciului. 
+    // Va fi accesibilă în toate testele din această clasă. 
+    VARIABILA baseUrl DE TIP Text 
+ 
+    // Procedură specială care se execută o singură dată, înainte de a rula 
+orice test din clasă. 
+    // Echivalentul lui @BeforeClass. 
+    PROCEDURA setup() 
+        // Încearcă să încarci și să citești fișierul de configurare 
+"app.yaml". 
+        Încearcă 
+            dateConfigurare = CiteșteFișierYAML("app.yaml") 
+        // Dacă fișierul nu poate fi găsit sau citit, oprește execuția și 
+afișează o eroare. 
+        CATCH EroareLaCitireFișier 
+            ARUNCĂ EROARE "Nu s-a putut găsi sau citi fișierul de 
+configurare 'app.yaml'" 
+        SFÂRȘIT Încearcă 
+ 
+        // Extrage valoarea specifică din datele de configurare citite. 
+        // Caută obiectul 'service', apoi în interiorul lui caută cheia 
+'baseUrl'. 
+        baseUrl = ExtrageValoare(dateConfigurare, "service.baseUrl") 
+    SFÂRȘIT PROCEDURA 
+ 
+    // Cazul de test propriu-zis. 
+    // Echivalentul lui @Test. 
+    TEST test_preluare_postare_dupa_titlu()
+        // == ARRANGE (ARANJARE) == 
+        // Pregătirea datelor necesare pentru test. 
+        urlComplet = CombinăText(baseUrl, "/todos/1")
+        AfișeazăLaConsolă("Se testează endpoint-ul: " + urlComplet) 
+ 
+        // == ACT (ACȚIUNE) == 
+        // Executarea acțiunii principale a testului. 
+        răspunsApi = TrimiteCerereGET(la_adresa: urlComplet) 
+ 
+        // == ASSERT (ASERȚIUNE) == 
+        // Verificarea rezultatelor obținute. 
+        Verifică(răspunsApi.codDeStare ESTE EGAL CU 200) 
+        Verifică(răspunsApi.corp.title ESTE EGAL CU delectus aut autem)
+ 
+        AfișeazăLaConsolă("Testul API a trecut cu succes! Status 200 și title
+corect.") 
+    SFÂRȘIT TEST 
+ 
+SFÂRȘIT CLASĂ
