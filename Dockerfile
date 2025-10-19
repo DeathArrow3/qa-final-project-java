@@ -10,6 +10,7 @@ RUN mvn dependency:go-offline
 
 # Etapa 4: Copiază restul proiectului
 COPY src ./src
+COPY config ./config
 
 # Etapa 5: Comanda de start - execută testele
 CMD ["mvn", "test"]
