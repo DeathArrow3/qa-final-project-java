@@ -23,7 +23,7 @@ public class ApiTest {
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
 
         // Încarcă fișierul ca o resursă din folderul config
-        try (InputStream inputStream = new FileInputStream("config/app.yaml");){
+        try (InputStream inputStream = new FileInputStream("config/app.yaml")){
             JsonNode root = mapper.readTree(inputStream);
             this.baseUrl = root.path("service").path("baseUrl").asText();
         }
@@ -32,7 +32,7 @@ public class ApiTest {
         }
     }
 
-    @Test(description = "Verifică preluarea corectă a unei postări după ID")
+    @Test(description = "Verifică preluarea corectă a unei postări după titlu")
     public void test_preluare_postare_dupa_titlu() {
         // ARRANGE
         String urlComplet = this.baseUrl + "/todos/1";
