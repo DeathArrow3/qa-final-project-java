@@ -11,33 +11,33 @@ public class UserTestMain {
         try {
             userRepository.addUser(user1);
 
-        } catch (InvadidUserDataException e) {
+        } catch (InvalidUserDataException e) {
             System.out.println("Userul este: " + e.getMessage());
         }
 
         try {
             userRepository.addUser(user2);
 
-        } catch (InvadidUserDataException e) {
+        } catch (InvalidUserDataException e) {
             System.out.println("Userul este: " + e.getMessage());
         }
 
         try {
             userRepository.addUser(user3);
 
-        } catch (InvadidUserDataException e) {
+        } catch (InvalidUserDataException e) {
             System.out.println("Userul este: " + e.getMessage());
         }
 
         try {
             userRepository.addUser(user4);
 
-        } catch (InvadidUserDataException e) {
+        } catch (InvalidUserDataException e) {
             System.out.println("Userul este: " + e.getMessage());
         }
 
         for (User u : userRepository.getUsers()) {
-            System.out.println("Userul este: " + u.getUsername() + " cu varsta: " + u.getAge());
+          System.out.println("Userul este: " + u.getUsername() + " cu varsta: " + u.getAge());
         }
 
     }
